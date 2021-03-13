@@ -10,15 +10,11 @@
 
 body {
     font-family: 'Philosopher', sans-serif;
-    background-image: url("../images/bg.png");
     overflow-x: hidden;
 }
 
-.navbar-brand {
-    /* color: #00B7FF; */
-    font-family: 'Philosopher', sans-serif;
-    ;
-    color: #Ba3b6a !important;
+.bg-img {
+    background-image: url("../images/bg-main.png");
 }
 
 .header-img {
@@ -27,7 +23,6 @@ body {
 }
 
 .caption {
-    font-family: 'Philosopher', sans-serif;
     font-size: 3rem !important;
 }
 
@@ -42,47 +37,52 @@ body {
     height: 300px;
 }
 
-.career {
-    color: #Ba3b6a;
-}
-
 header .slantLine {
     width: 130px;
     height: 5px;
     /* vertical-align: bottom; */
     /* bottom: 36%; */
     /* left: 7%; */
-    background-color: #Ba3b6c;
+    /* background-color: #Ba3b6c; */
     border-radius: 30%;
     transform: rotate3d(1, 1, 1, -0.03turn);
 }
 
-@media only screen and (max-width: 767px) {
+video {
+    height: 400px;
+    /* border: 2px solid blue; */
+    border-radius: 20px;
+}
+
+.video>div {
+    /* height: 400px; */
+    max-height: 400px;
+}
+
+@media only screen and (max-width: 768px) {
     .head-img {
         margin-top: 100px !important;
     }
-
     .caption {
         font-size: 30px!important;
     }
 }
 
 @media only screen and (max-width: 576px) {
+    .text-sm-center {
+        text-align: center;
+    }
     .welcome {
-       margin-top: 10px !important;
-	}
+        margin-top: 10px !important;
+    }
     .bio {
-       margin-top: 10px !important;
-     }
+        margin-top: 10px !important;
+    }
     .mt-small-5 {
         margin-top: 5em;
     }
-
     .caption>span {
         display: inline-flex !important;
         width: 40%;
     }
-    body section{
-    /**	width: 0!important**/
 }
-
