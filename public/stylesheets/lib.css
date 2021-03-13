@@ -658,6 +658,12 @@ footer {
         margin-bottom: 1em !important;
     }
     footer {
-        margin-top: 600px !important;
+        margin-top: 1100px !important;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .ml-xs-5 {
+        margin-left: 5em;
     }
 }
