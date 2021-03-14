@@ -33,18 +33,19 @@ body {
 }
 
 #short-bio {
-    line-height: 1.3;
-    height: 300px;
+    /* line-height: 1.3; */
+    /* height: 300px; */
 }
 
 header .slantLine {
     width: 130px;
     height: 5px;
     /* vertical-align: bottom; */
+    /* position: relative; */
     /* bottom: 36%; */
-    /* left: 7%; */
+    /* left: 35%; */
     /* background-color: #Ba3b6c; */
-    border-radius: 30%;
+    border-radius: 28px;
     transform: rotate3d(1, 1, 1, -0.03turn);
 }
 
