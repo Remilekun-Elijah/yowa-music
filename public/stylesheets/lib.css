@@ -653,6 +653,12 @@ video {
     outline: none;
 }
 
+video {
+    background: #333;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 
 /* @media (min-width: 78) */
 
@@ -661,6 +667,9 @@ video {
         font-size: 40px !important;
     }
     .text-40 {
+        font-size: 30px !important;
+    }
+    .text-45 {
         font-size: 35px !important;
     }
     .text-35 {
@@ -687,13 +696,22 @@ video {
     .mb-sm-1 {
         margin-bottom: 1em !important;
     }
-    footer {
+    .home-footer {
         margin-top: 1100px !important;
     }
 }
 
 @media only screen and (max-width: 575.98px) {
-    .ml-xs-5 {
+    .text-50 {
+        font-size: 40px !important;
+    }
+    .text-40 {
+        font-size: 30px !important;
+    }
+    /* .text-35 {
+        font-size: 25px !important;
+    } */
+    .ml-sm-5 {
         margin-left: 5em;
     }
     .mt-xs-15 {
@@ -703,8 +721,8 @@ video {
         padding-right: 10px;
         padding-left: 10px;
     }
-    audio {
-        /* max-width: 250px; */
+    .songs-bg-img .caption {
+        text-align: center;
     }
 }
 
@@ -712,5 +730,11 @@ video {
     .flex-xs-column {
         display: flex;
         flex-direction: column !important;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .mr-sm-5 {
+        margin-right: 2em;
     }
 }

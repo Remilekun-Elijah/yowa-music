@@ -1,4 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
+.songs-bg-img {
+    background-image: url("../images/stage2.png");
+    background-position: center;
+    /* background-repeat: no-repeat; */
+    width: 100vw;
+    height: 580px;
+    /* transform: scale(.7); */
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+.songs-bg-img header {
+    width: 100vw;
+    height: 580px;
+    background: linear-gradient(to right, rgba(13, 110, 253, .4), rgba(186, 59, 108, 1));
+    background-attachment: scroll;
+}
+
+.songs-bg-img header .caption {
+    position: relative;
+    top: 35%;
+    /* right: 0px !important; */
+    /* padding-top: 137px; */
+    /* margin-bottom: auto; */
+}
+
 
 /* pink #E7008A */
 
@@ -32,11 +58,6 @@ body {
     width: 400px;
 }
 
-#short-bio {
-    /* line-height: 1.3; */
-    /* height: 300px; */
-}
-
 header .slantLine {
     width: 130px;
     height: 5px;
@@ -58,6 +79,10 @@ video {
 .video>div {
     /* height: 400px; */
     max-height: 400px;
+}
+
+.song h4 {
+    font-size: 25px;
 }
 
 @media only screen and (max-width: 768px) {
