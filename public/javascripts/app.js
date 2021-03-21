@@ -11,7 +11,7 @@ document.addEventListener('scroll', e => {
         // document.querySelector('.navbar').classList.remove('navbar-light');
         document.querySelector('.navbar').classList.remove('bg-white');
         document.querySelector('.navbar').classList.remove('fixed-top');
-        document.querySelector('.navbar').classList.remove('shadow')
+        document.querySelector('.navbar').classList.remove('shadow');
     }
     console.log(window.pageYOffset);
-})
+});
