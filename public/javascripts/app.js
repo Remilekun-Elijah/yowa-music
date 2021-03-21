@@ -13,5 +13,5 @@ document.addEventListener('scroll', e => {
         document.querySelector('.navbar').classList.remove('fixed-top');
         document.querySelector('.navbar').classList.remove('shadow');
     }
-    console.log(window.pageYOffset);
+    // console.log(window.pageYOffset);
 });
