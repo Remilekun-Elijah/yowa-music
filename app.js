@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-// var songsRouter = require('./routes/songs');
-/** Error Causing code  **/
+
+/** Error Causing Line  **/
 // var file = require('./routes/file');
 
 var app = express();
@@ -24,14 +24,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ROUTES
 app.use('/', indexRouter);
-app.use('/', indexRouter);
-// app.use('/', file);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
 });
-
-
 
 // error handler
 app.use(function(err, req, res, next) {
