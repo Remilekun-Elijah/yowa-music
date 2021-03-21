@@ -1,11 +1,104 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
+
+/* PRELOADER */
+
+.navbar {
+    transition: all .3s;
+}
+
+.preloader {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    z-index: 9999;
+    background-image: linear-gradient(to right bottom, rgba(13, 110, 253, 1), rgba(186, 59, 108, 1));
+    cursor: progress;
+}
+
+.preloader>div {
+    padding-top: 45vh;
+    font-size: 30px;
+}
+
+.preloader>div span {
+    display: inline-block;
+}
+
+.o {
+    animation-delay: .05s
+}
+
+.a {
+    animation-delay: .07s
+}
+
+.d {
+    animation-delay: .1s
+}
+
+.i {
+    animation-delay: .15s
+}
+
+.n {
+    animation-delay: .2s
+}
+
+.g {
+    animation-delay: .25s
+}
+
+.dot1 {
+    animation-delay: .30s
+}
+
+.dot2 {
+    animation-delay: .35s
+}
+
+.dot3 {
+    animation-delay: .40s
+}
+
+@keyframes up {
+    0% {
+        transform: translateY(0%)
+    }
+    50% {
+        transform: translateY(-60%)
+    }
+    100% {
+        transform: translateY(0%)
+    }
+}
+
+.preloader>div span {
+    animation-name: up;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out
+}
+
+.preloader>.h-100 {
+    height: 100vh !important;
+}
+
+.fadeout {
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+
+/* END of PRELOADER */
+
+
+/* SONG PAGE */
+
 .songs-bg-img {
     background-image: url("../images/stage2.png");
     background-position: center;
-    /* background-repeat: no-repeat; */
     width: 100vw;
     height: 580px;
-    /* transform: scale(.7); */
     background-attachment: scroll;
     background-size: cover;
 }
@@ -20,9 +113,6 @@
 .songs-bg-img header .caption {
     position: relative;
     top: 35%;
-    /* right: 0px !important; */
-    /* padding-top: 137px; */
-    /* margin-bottom: auto; */
 }
 
 
@@ -61,19 +151,14 @@ body {
 header .slantLine {
     width: 130px;
     height: 5px;
-    /* vertical-align: bottom; */
-    /* position: relative; */
-    /* bottom: 36%; */
-    /* left: 35%; */
-    /* background-color: #Ba3b6c; */
     border-radius: 28px;
     transform: rotate3d(1, 1, 1, -0.03turn);
 }
 
 video {
     height: 400px !important;
-    /* border: 2px solid blue; */
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .video>div {
