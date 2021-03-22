@@ -6,9 +6,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 
-/** Error Causing Line  **/
-// var file = require('./routes/file');
-
 var app = express();
 
 // view engine setup

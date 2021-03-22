@@ -6,13 +6,63 @@ const nodemailer = require("nodemailer");
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Yowa Music' });
-
-}).get("/songs", (req, res) => {
+    next();
+}).get('/songs', function(req, res, next) {
     res.render('songs', { title: "All of my songs" });
-}).post('/subscribed', function(req, res, next) {
+    next();
+}).get('/gallery', function(req, res, next) {
+    res.render('gallery', { msg: "My Photo Gallery" });
+    next();
+}).get('/contact', function(req, res, next) {
+    res.render('contact', { msg: "Contact Me" });
+    next();
+}).post('/sent', function(req, res, next) {
 
     const adminEmails = `remilekunelijah21997@yahoo.com,
-        juwonofficial@yahoo.com, ewmrhumr@yowamusic.com.ng `;
+        yowamusic@gmail.com `;
+    async function main() {
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+            host: "host11.registrar-servers.com",
+            port: 465,
+            secure: true, // true for 465, false for other ports
+            auth: {
+                user: "_mainaccount@yowamusic.com.ng", // generated ethereal user
+                pass: "09023007389@fb.com", // generated ethereal password
+            },
+        });
+        // send mail with defined transport object
+        let adminMsg = await transporter.sendMail({
+            from: `"Yowa Music" <ewmrhumr@yowamusic.com.ng>`, // sender address
+            to: `${adminEmails}`, // list of receivers
+            subject: `New Message From ${req.body.name}`, // Subject line
+            html: `
+            <section style="box-shadow: 1px 1px 2px 5px rgba(10,10,10,0.97); color:#333;  background:white; text-align:center; max-width:80%; width:80%; margin: 50px 20px 50px 20px; padding: 20px 20px;">
+            <h1 style="color:rgb(13, 110, 253); margin-bottom: 40px; text-align:center">YOWA MUSIC </h1>
+            <h2 style='color:#333; font-size:20px'>  Below is the information of the subscriber</h2>
+                    <p style="font-size:20px; margin-bottom:10px"><span style="font-weight:600">Name:</span> ${req.body.name}</p>
+                    <p style="font-size:20px; text-decoration:none; color: #333 !important"><span style="font-weight:600">Email:</span> ${req.body.email}</p>
+                    <p style="font-size:20px; text-decoration:none; color: #333 !important">
+                    <span style="font-weight:600">Message:</span> ${req.body.message}</p>
+                
+                <section style="text-align: center">
+            <hr style="margin-top: 40px">
+            
+            <p style='margin-top: 10px; font-size: 18px'>Yowa music &copy; 2021, all rights reserved.</p>
+            </section>
+            </section>`
+
+        });
+        console.log("Message sent: %s", `${adminMsg.messageId} ${req.body.email}`);
+        res.render("sent", {
+            name: req.body.name
+        });
+    }
+
+    main().catch(console.error);
+}).post('/subscribed', function(req, res, next) {
+
+    const adminEmail = "remilekunelijah21997@yahoo.com, yowamusic@gmail.com";
 
     async function main() {
         // create reusable transporter object using the default SMTP transport
@@ -27,9 +77,8 @@ router.get('/', function(req, res, next) {
         });
         // send mail with defined transport object
         let adminMsg = await transporter.sendMail({
-            from: `
-            "Yowa Music" < ewmrhumr @yowamusic.com.ng > `, // sender address
-            to: `${adminEmails}`, // list of receivers
+            from: `"Yowa Music" <ewmrhumr@yowamusic.com.ng>`, // sender address
+            to: `${adminEmail}`, // list of receivers
             subject: "New Newsletter Subscriber", // Subject line
             html: ` <section style = "box-shadow: 1px 1px 2px 5px rgba(10,10,10,0.97); color:#333;  background:white; text-align:center; max-width:80%; width:80%; margin: 50px 20px 50px 20px; padding: 20px 20px;" >
                 <
@@ -46,7 +95,9 @@ router.get('/', function(req, res, next) {
             2021, all rights reserved. </p> </section> </section>
             `
         });
-        console.log("Message sent: %s", `${adminMsg.messageId} ${adminEmails}`);
+
+        console.log("Message sent: %s", `${adminMsg.messageId} ${adminEmail}`);
+
 
         // send mail with defined transport object
         let userMsg = await transporter.sendMail({
@@ -75,14 +126,13 @@ router.get('/', function(req, res, next) {
 
         console.log("Message sent: %s", `${userMsg.messageId} ${req.body.email}`);
         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        res.render("home", { title: req.body.name });
+        res.render("subscribe", {
+            name: req.body.name
+        });
 
     }
 
     main().catch(console.error);
-
-    // console.log(req.body.email);
-
 
 });
 

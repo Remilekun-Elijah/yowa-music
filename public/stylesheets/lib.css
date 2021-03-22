@@ -301,6 +301,10 @@
     padding-top: 20px
 }
 
+.pt-100 {
+    padding-top: 100px;
+}
+
 
 /** padding Bottom **/
 
@@ -327,7 +331,7 @@
 
 /** Margin **/
 
-.mx-auto {
+.mx-auto-lib {
     margin-left: auto !important;
     margin-right: auto !important;
 }
@@ -640,12 +644,22 @@ footer {
 }
 
 .text-pink {
-    color: #Ba3b6c !important;
+    color: rgba(186, 59, 108, 1) !important;
 }
 
 .bg-pink {
     color: white !important;
-    background-color: #Ba3b6c !important;
+    background-color: rgba(186, 59, 108, .8) !important;
+}
+
+.bg-pink:hover {
+    color: white;
+    background-color: rgba(186, 59, 108, 1) !important;
+}
+
+.bg-pink:focus {
+    color: white;
+    background-color: rgba(186, 59, 108, 1) !important;
 }
 
 audio,
@@ -663,6 +677,13 @@ video {
 /* @media (min-width: 78) */
 
 @media only screen and (max-width: 767px) {
+    .mx-sm-auto-lib {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .mt-sm-0-lib {
+        margin-top: 0 !important;
+    }
     .text-50 {
         font-size: 40px !important;
     }
