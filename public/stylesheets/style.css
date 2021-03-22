@@ -3,11 +3,21 @@
 /* PRELOADER */
 
 .navbar {
+    background: rgba(255, 255, 255, .9);
     transition: all .3s;
+}
+
+.navbar ul input[type='button'] {
+    background-color: rgba(186, 59, 108, .8) !important;
+}
+
+.navbar ul input[type='button']:hover {
+    background-color: rgba(186, 59, 108, 1) !important;
 }
 
 .preloader {
     position: absolute;
+    top: 0;
     height: 100vh;
     width: 100%;
     z-index: 9999;
@@ -110,9 +120,11 @@
     background-attachment: scroll;
 }
 
-.songs-bg-img header .caption {
-    position: relative;
-    top: 35%;
+.songs-bg-img header .caption,
+.gallery-bg-img .caption {
+    position: absolute;
+    top: 45%;
+    color: whitesmoke;
 }
 
 
@@ -169,6 +181,58 @@ video {
 .song h4 {
     font-size: 25px;
 }
+
+
+/* GALLERY */
+
+.gallery-bg-img {
+    background-image: url("../images/event-pic.jpg");
+    background-position: center;
+    width: 100vw;
+    height: 555px;
+    /* max-height: 555px; */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover
+}
+
+.gallery-bg-img header {
+    background: linear-gradient( rgba(13, 110, 253, .8), rgba(186, 59, 108, .8));
+    width: 100vw;
+    height: 555px;
+}
+
+.gallery img {
+    /* width: 400px; */
+    height: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all .5s;
+}
+
+.gallery img:hover {
+    transform-origin: center;
+    transform: scale3d(1.1, 1, 1);
+    box-shadow: 1px 2px 1px 7px rgba(25, 25, 25, .097) !important;
+    transition: all .3s;
+}
+
+.gallery .left {
+    transform: rotate(-10deg);
+}
+
+.gallery .right {
+    transform: rotate(10deg);
+}
+
+.gallery .center {
+    transform: scale3d(.9, 0.95, 1);
+}
+
+
+/* .gallery .center:hover {
+    
+} */
 
 @media only screen and (max-width: 768px) {
     .head-img {

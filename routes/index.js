@@ -11,9 +11,15 @@ router.get('/', function(req, res, next) {
 }).get('/songs', function(req, res, next) {
     res.render('songs', { title: "All of my songs" });
     next();
+}).get('/gallery', function(req, res, next) {
+    res.render('gallery', { title: "My Gallery" });
+    next();
+}).get('/contact', function(req, res, next) {
+    res.render('contact', { title: "Contact Me" });
+    next();
 }).post('/subscribed', function(req, res, next) {
 
-    const adminEmail = "remilekunelijah21997@yahoo.com, juwonofficial@yahoo.com, ewmrhumr@yowamusic.com.ng";
+    const adminEmail = "remilekunelijah21997@yahoo.com, yowamusic@gmail.com";
 
     async function main() {
         // create reusable transporter object using the default SMTP transport
@@ -29,7 +35,7 @@ router.get('/', function(req, res, next) {
         // send mail with defined transport object
         let adminMsg = await transporter.sendMail({
             from: `"Yowa Music" <ewmrhumr@yowamusic.com.ng>`, // sender address
-            to: `remilekunelijah21997@yahoo.com, juwonofficial@yahoo.com, ewmrhumr@yowamusic.com.ng`, // list of receivers
+            to: `${adminEmail}`, // list of receivers
             subject: "New Newsletter Subscriber", // Subject line
             html: `
             <section style="box-shadow: 1px 1px 2px 5px rgba(10,10,10,0.97); color:#333;  background:white; text-align:center; max-width:80%; width:80%; margin: 50px 20px 50px 20px; padding: 20px 20px;">
@@ -90,8 +96,8 @@ router.get('/', function(req, res, next) {
 
         console.log("Message sent: %s", `${userMsg.messageId} ${req.body.email}`);
         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        res.render("home", {
-            title: req.body.name
+        res.render("subscribe", {
+            name: req.body.name
         });
 
     }
