@@ -121,7 +121,8 @@
 }
 
 .songs-bg-img header .caption,
-.gallery-bg-img .caption {
+.gallery-bg-img .caption,
+.contact-bg-img .caption {
     position: absolute;
     top: 45%;
     color: whitesmoke;
@@ -233,6 +234,26 @@ video {
 /* .gallery .center:hover {
     
 } */
+
+
+/* CONTACT */
+
+.contact-bg-img {
+    background-image: url("../images/contact.jpg");
+    background-position: center;
+    width: 100vw;
+    height: 555px;
+    /* max-height: 555px; */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover
+}
+
+.contact-bg-img header {
+    background: linear-gradient( rgba(13, 110, 253, .8), rgba(186, 59, 108, .8));
+    width: 100vw;
+    height: 555px;
+}
 
 @media only screen and (max-width: 768px) {
     .head-img {

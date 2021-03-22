@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <title>
-        <%- title %>
+        Yowa |
+        <%=msg %>
     </title>
 </head>
 
@@ -57,7 +58,9 @@
 
         </header>
         <div class="container text-center my-auto caption">
-            <h1 class="fas fa-camera text-center"> My Photo Gallery</h1>
+            <h1 class="fas fa-camera text-center">
+                <%- msg %>
+            </h1>
         </div>
     </div>
 
@@ -66,10 +69,6 @@
 
         <div class="container gallery pt-100">
 
-
-            <!-- <h2 class="text-center pt-5 text-primary">
-                <%- title %>
-            </h2> -->
             <div class="row container mx-auto justify-content-between">
 
                 <img src="images/ig.jpeg" alt="" class="mx-sm-auto-lib shadow mb-5 mb-md-0 left img-fluid  col-sm-10 col-lg-3 col-md-5" srcset="">
