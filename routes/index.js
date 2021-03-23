@@ -95,7 +95,6 @@ router.get('/', function(req, res, next) {
             2021, all rights reserved. </p> </section> </section>
             `
         });
-
         console.log("Message sent: %s", `${adminMsg.messageId} ${adminEmail}`);
 
 
@@ -106,20 +105,34 @@ router.get('/', function(req, res, next) {
             subject: "Thanks for subscribing to our newsletter", // Subject line
             html: ` <body style='display: flex; flex-direction: column; justify-content: center; background:#eee;'>
             <section id='body' style="box-shadow: 1px 1px 2px 5px rgba(10,10,10,0.97); color:#333;  background:white; max-width:80%; width:80%; margin: 50px auto 50px auto; padding: 5px 20px;">
-                <h1 style="color:rgb(13, 110, 253); margin-bottom: 40px; text-align:center" > YOWA MUSIC </h1> <p style='font-size:18px'> Hey ${req.body.name }! </p> <p style='font-size:18px; padding-top: 10px'> We want to thank you personally
-            for subscribing to our newsletter.</p> <p style='font-size:18px'> As promised, we won 't be sharing your email with anyone, we will only send you message whenever we have a new update on our website <b><a style='color: rgb(13, 110, 253); text-decoration: none;' href='
-            http://yowamusic.com.ng'>yowamusic.com.ng</a></b>
-                </p>  <p style='font-size:17px; margin-top: 30px; margin-bottom:0'> -Management </p> <p style='font-size:17px; margin-top:0'> <span style = 'visibility: hidden; color:transparent;'>-</span> <span style='color:#aaa'>Yowa Music</span>.</p>
-                <section style="text-align: center">
-                <hr style="margin-top: 35px">
-                <h2 style='color:#333; font-size:20px'> Useful links </h2>
-                <div style="display: -webkit-box; -webkit-box-pack: center;" >
-                <ul style=" margin: 1px auto 1px auto; display: flex; flex-direction: row; justify-content: center;"><li style='font-size:17px; list-style-type:none;' > < a style = "text-decoration: none" href='http://yowamusic.com.ng'> Home < /a></li>
-                <li style = 'font-size:17px; list-style-type:none; color:#333'> | < /li> <li style = 'font-size:17px; list-style-type:none;'> <a style="text-decoration: none" href='http://yowamusic.com.ng/songs'> Songs </a></li>
-                <li style='font-size:17px; list-style-type:none; color:#333'> | </li> <li style='font-size:17px; list-style:none;' > <a style="text-decoration: none" href='http://yowamusic.com.ng/gallery'> Gallery </a> </li> </ul> </div> <p style='margin-top: 10px; font-size: 16px' > Yowa music & copy;
-            2021, all rights reserved. < /p> 
-            </section> 
-            </section> 
+
+            <h1 style="color:rgb(13, 110, 253); margin-bottom: 40px; text-align:center">YOWA MUSIC </h1>
+            <p style='font-size:18px;'>Hey ${req.body.name}!</p>
+            <p style='font-size:18px; padding-top: 10px'> We want to thank you personally for subscribing to our newsletter.</p>
+            <p style='font-size:18px'>As promised, we won't be sharing your email with anyone, we will only send you message whenever we have a new update on our website <b><a style='color:rgb(13, 110, 253); text-decoration: none;' href='http://yowamusic.com.ng'>yowamusic.com.ng</a></b>
+            </p> 
+            <p style='font-size:17px; margin-top: 30px; margin-bottom:0'>- Management </p>
+            <p style='font-size:17px; margin-top:0'><span style='visibility: hidden; color:transparent;'>-</span> <span style='color:#aaa'>Yowa Music</span>.</p>
+            
+           
+            <section style="text-align: center">
+            <hr style="margin-top: 35px">
+            <h2 style='color:#333; font-size:20px'> Useful links</h2>
+            
+            <div style="display: -webkit-box; -webkit-box-pack: center;">
+            <ul style=" margin: 1px auto 1px auto; display: flex; flex-direction: row; justify-content: center;">
+                
+            <li style='font-size:17px; list-style-type:none;'><a style="text-decoration: none;" href='http://yowamusic.com.ng'>Home</a></li>
+                <li style='font-size:17px; list-style-type:none; color:#333; padding:0 5px'>|</li>
+                <li style='font-size:17px; list-style-type:none;'><a style="text-decoration: none" href='http://yowamusic.com.ng/songs'>Songs</a></li>
+                <li style='font-size:17px; list-style-type:none; color:#333; padding:0 5px'>|</li>
+                <li style='font-size:17px; list-style:none;'><a style="text-decoration: none" href='http://yowamusic.com.ng/gallery'>Gallery</a>
+            </li>
+            </ul>
+            </div>
+            <p style='margin-top: 10px; font-size: 16px'>Yowa music &copy; 2021, all rights reserved.</p>
+            </section>
+            </section>
             </body>
             ` // html body
         });

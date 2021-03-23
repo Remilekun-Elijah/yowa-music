@@ -230,6 +230,10 @@ video {
     transform: scale3d(.9, 0.95, 1);
 }
 
+.gallery .center:hover {
+    transform: scale3d(.99, 0.99, 1) !important;
+}
+
 
 /* .gallery .center:hover {
     
