@@ -22,6 +22,12 @@
         Yowa |
         <%- msg %>
     </title>
+    <style>
+        form .requiredX {
+            position: relative;
+            top: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,22 +72,22 @@
     <div class="container pt-100">
         <form class="container mx-auto w-75" method="POST" action="/sent">
             <div class="form-group">
-                <label for="exampleInputEmail1" class="text-20">Full Name</label>
-                <input type="name" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your name">
+                <label for="name" class="text-20">Full Name<span class="requiredX text-danger">*</span></label>
+                <input type="name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter your name" required>
 
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1" class="text-20 mt-4">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
+                <label for="email" class="text-20 mt-4">Email address<span class="requiredX text-danger">*</span></label>
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your email" required>
                 <small id="emailHelp" class="form-text text-muted text-16">I'll never share your email with anyone else.</small>
             </div>
             <div class="form-group mt-4">
-                <label for="exampleInputPassword1" class="text-20">Message</label>
-                <textarea rows="5" type="text" name="message" class="form-control" id="exampleInputPassword1" placeholder="Enter your message..."></textarea>
+                <label for="msg" class="text-20">Message<span class="requiredX text-danger">*</span></label>
+                <textarea rows="5" type="text" name="message" class="form-control" id="msg" placeholder="Enter your message..." required></textarea>
             </div>
 
-            <button type="submit" class="btn mt-4 btn-primary">Submit</button>
+            <button type="submit" class="btn mt-4 btn-primary w-sm-100-lib">Submit</button>
         </form>
     </div>
     <!-- Footer -->
@@ -115,6 +121,12 @@
     </footer>
     <script src="javascripts/app.js"></script>
     <script src="javascripts/bootstrap.min.js"></script>
+    <script>
+        let f = document.querySelector('form');
+        f.message.addEventListener("keypress", e => {
+            e.key === "Enter" && f.name.value != '' && f.email.value != '' && f.message.value.trim() != '' ? f.submit() : console.log(e.key)
+        })
+    </script>
 </body>
 
 </html>

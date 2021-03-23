@@ -677,6 +677,12 @@ video {
 /* @media (min-width: 78) */
 
 @media only screen and (max-width: 767px) {
+    .w-sm-100-lib {
+        width: 100% !important;
+    }
+    .d-sm-none-lib {
+        display: none;
+    }
     .mx-sm-auto-lib {
         margin-left: auto;
         margin-right: auto;

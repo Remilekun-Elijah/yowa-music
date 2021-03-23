@@ -1,9 +1,10 @@
 // jshint esversion: 8
 var express = require('express');
 const nodemailer = require("nodemailer");
-let createError = require("http-errors");
+// let createError = require("http-errors");
 var router = express.Router();
-
+// const app = express();
+// app.use(express.urlencoded({ extended: false }));
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Yowa Music' });
@@ -53,7 +54,7 @@ router.get('/', function(req, res, next) {
             </section>`
 
         });
-        console.log("Message sent: %s", `${adminMsg.messageId} ${req.body.email}`)
+        console.log("Message sent: %s", `${adminMsg.messageId} ${req.body.email}`);
         res.render("sent", {
             name: req.body.name
         });
@@ -95,7 +96,8 @@ router.get('/', function(req, res, next) {
             </section>`
 
         });
-        console.log("Message sent: %s", `${adminMsg.messageId} ${adminEmail}`);
+        console.log("Message sent: %s", `${adminMsg.messageId}`);
+        console.log(req.body.name);
 
         // send mail with defined transport object
         let userMsg = await transporter.sendMail({
@@ -122,10 +124,10 @@ router.get('/', function(req, res, next) {
             <div style="display: -webkit-box; -webkit-box-pack: center;">
             <ul style=" margin: 1px auto 1px auto; display: flex; flex-direction: row; justify-content: center;">
                 
-            <li style='font-size:17px; list-style-type:none;'><a style="text-decoration: none" href='http://yowamusic.com.ng'>Home</a></li>
-                <li style='font-size:17px; list-style-type:none; color:#333'>|</li>
+            <li style='font-size:17px; list-style-type:none;'><a style="text-decoration: none;" href='http://yowamusic.com.ng'>Home</a></li>
+                <li style='font-size:17px; list-style-type:none; color:#333; padding:0 5px'>|</li>
                 <li style='font-size:17px; list-style-type:none;'><a style="text-decoration: none" href='http://yowamusic.com.ng/songs'>Songs</a></li>
-                <li style='font-size:17px; list-style-type:none; color:#333'>|</li>
+                <li style='font-size:17px; list-style-type:none; color:#333; padding:0 5px'>|</li>
                 <li style='font-size:17px; list-style:none;'><a style="text-decoration: none" href='http://yowamusic.com.ng/gallery'>Gallery</a>
             </li>
             </ul>
