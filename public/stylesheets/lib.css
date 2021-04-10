@@ -729,6 +729,9 @@ video {
 }
 
 @media only screen and (max-width: 575.98px) {
+    .text-18 {
+        font-size: 16px !important;
+    }
     .text-50 {
         font-size: 40px !important;
     }
