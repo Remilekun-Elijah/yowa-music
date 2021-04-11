@@ -2,6 +2,50 @@
 
 /* PRELOADER */
 
+#body {
+    width: 100%;
+    transition: all .5s;
+}
+
+.body {
+    width: 70% !important;
+}
+
+#sidebar {
+    z-index: 2;
+    position: fixed;
+    left: -23rem;
+    /* transform: translateX(-30vw); */
+    transition: all .4s;
+}
+
+.sidebar {
+    left: 0 !important;
+    /* transform: translateX(0vw) !important; */
+}
+
+#sidebartoggle {
+    position: absolute;
+    top: 20px;
+    right: -40px;
+    transition: all .3s;
+}
+
+#sidebartoggle>i {
+    transform: rotate(180deg);
+    transition: all .5s;
+}
+
+.sidebartoggled {
+    position: absolute;
+    right: 0px !important;
+}
+
+.sidebartoggled>i {
+    transform: rotate(0deg) !important;
+    transition: all .5s;
+}
+
 .navbar {
     background: rgba(255, 255, 255, .9);
     transition: all .3s;
