@@ -325,7 +325,7 @@
                 });
 
                 pages.login.submit(e => {
-                    $("#noUser").removeClass("text-text-danger").addClass("text-info");
+                    $("#noUser").removeClass("text-danger").addClass("text-info");
                     $("#noUser").text("Processing your inputs...");
                     const url = $(e)[0].target["action"];
                     console.log(url);
