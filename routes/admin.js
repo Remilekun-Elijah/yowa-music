@@ -5,8 +5,9 @@ const express = require('express'),
     mongoose = require("mongoose"),
     multer = require('multer'),
     bcrypt = require("bcrypt");
-require("dotenv/config");
+if (app.get("env") === 'NODE_ENV') require("dotenv/config");
 
+console.log(app.get("env"));
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
