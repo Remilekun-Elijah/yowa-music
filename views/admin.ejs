@@ -342,7 +342,6 @@
                             url: url,
                             data: info,
                             success: (data) => {
-                                // setCookie("email", info.email, 7);
                                 $("#noUser").removeClass("text-danger");
                                 $("#noUser").removeClass("text-info").addClass("text-success");
                                 $("#noUser").text("Login successful");
@@ -350,11 +349,7 @@
                             },
                             error: (err) => {
                                 $("#noUser").removeClass("text-info").addClass("text-danger");
-                                // $("#noUser").text(err.responseJSON.msg)
-                                $("#noUser").text("Something went wrong.");
-                                console.log(err)
-                                    // if (err.responseJSON.msg.includes("Password")) $(e)[0].target.password.value = ''
-                                    // else console.log("not a password error")
+                                $("#noUser").text(err.responseJSON.msg)
                             },
                             dataType: "json"
                         })
