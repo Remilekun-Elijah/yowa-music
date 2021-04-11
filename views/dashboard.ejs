@@ -25,6 +25,12 @@
             position: relative;
             top: 5px;
         }
+        
+        audio,
+        source {
+            border-radius: 25px !important;
+            background: transparent !important;
+        }
     </style>
 </head>
 
@@ -32,10 +38,10 @@
     <nav class="navbar navbar-expand-md navbar-light fixed-top py-0 shadow">
         <div class=" container ps-lg-5">
             <a class="text-30 navbar-brand text-primary " href="/ ">
-                   Yowa Music
-               </a>
+               Yowa Music
+           </a>
             <button class="navbar-toggler ml-20" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
- <span class="navbar-toggler-icon"></span>
+<span class="navbar-toggler-icon"></span>
 </button>
             <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ">
@@ -49,21 +55,25 @@
                         <a class="nav-link" href="/gallery">Gallery</a>
                     </li>
                     <li class="nav-item text-20 ms-md-5">
-                        <a class="nav-link active" href="#"> <button type="button" id="adminName" class="btn bg-pink shadow"> <i class="fas fa-user"> <%= name %></i>  </button> </a>
+                        <a class="nav-link active" href="#"> <button type="button" id="adminName" class="btn bg-pink shadow"> <i class="fas fa-user"> <%= name %>
+    </i>
+    </button>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <main class="d-flex flex-row ">
-        <section class="">
+    <main class="d-flex  ">
+        <section class="bg-white">
 
-            <div class="containe d-flex">
-                <div class="d-flex mt-5 justify-content-center position-fixed shadow" style="width: 380px; left:0px;">
+            <div class="containe d-flex" id="sidebar">
+                <div class="d-flex mt-5 bg-white justify-content-center position-fixed shadow" style="width: 360px">
                     <div class="user  mt-5">
                         <img src="https://res.cloudinary.com/remilekunelijah/image/upload/v1614467615/wordpress/elijah_98807206.png" alt="" class=" mx-auto border-rounded border-0 shadow bg-dark mb-3" srcset="" style="width: 200px;">
 
                         <div class="d-flex align-items-center">
+                            <button id="sidebartoggle" class="position-absolute btn  text-30 shadow bg-white border-0 "><i class="fas fa-caret-left"></i></button>
                             <li class="fas fa-user text-25 text-center" style="margin-top: -9px; margin-right: 10px;"></li>
                             <h2 class="ml-2 text-25">
                                 <%= data.name%>
@@ -80,9 +90,11 @@
                             <h3 class="text-danger">Danger Area</h3>
                             <div class="border border-2 p-2" style="border-radius: 5px;">
                                 <p class="text-23 mb-0">Log out of your account</p>
-                                <button class="btn btn-outline-danger mb-3 border border-danger">Logout</button>
+                                <button class="btn btn-outline-danger mb-3 border border-danger" id="logout">Logout</button>
                                 <p class="text-23 mb-0">Delete your account</p>
-                                <button class="btn btn-danger">Delete</button>
+                                <form action="/admin/:email/destroyAccount" id="delAcct">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -90,30 +102,25 @@
             </div>
         </section>
 
-        <section class="ms-auto" style="width: 70%">
+        <section class="ms-auto containe px-3" id="body">
             <div class="d-flex justify-content-center  mt-100" style="margin-right: 1">
 
-                <div class="d-flex  flex-row justify-content-center">
+                <div class="row  justify-content-between">
 
 
-                    <div class=" bg-danger text-center text-white py-2 col-4 card shadow border-0">
+                    <div class="bg-danger text-center text-white py-2 col-sm-4 card shadow border-0">
                         <h4 class="text-23">Songs uploaded </h4>
-                        <span class="text-30 text-bold">6</span>
+                        <span class="text-30 text-bold"><%= song.length %></span>
                     </div>
 
-                    <div class="bg-dark text-center text-white py-2 col-3 card shadow ms-3 border-0">
-                        <h4 class="text-23">Total Songs </h4>
-                        <span class="text-30">10</span>
+                    <div class="bg-dark text-center text-white py-2 col-sm-4  card shadow  border-0">
+                        <h4 class="text-23">Images uploaded </h4>
+                        <span class="text-30"><%= img.length %></span>
                     </div>
 
-                    <div class="bg-warning text-center text-white py-2 col-3 card shadow mx-3 border-0">
-                        <h4 class="text-23">Total videos </h4>
-                        <span class="text-30">3</span>
-                    </div>
-
-                    <div class=" bg-primary text-center text-white py-2 col-4 card shadow border-0">
+                    <div class=" bg-primary text-center text-white py-2 col-sm-4  card shadow border-0">
                         <h4 class="text-23">Videos uploaded </h4>
-                        <span class="text-30 text-bold">2</span>
+                        <span class="text-30 text-bold"><%= video.length %></span>
                     </div>
                 </div>
             </div>
@@ -142,7 +149,7 @@
                         <div class="form-group d-flex justify-content-center mt-4">
                             <div class="w-60" style="margin-right: 10px !important">
                                 <label for="fname" class="text-20">File name <span class="requiredX text-danger">*</span></label>
-                                <input type="text" placeholder="e.g Yowa - down on" name="fname" class="form-control" id="fname">
+                                <input type="text" placeholder="e.g Yowa - down on" name="fname" class="form-control" id="fname" required>
                             </div>
                             <div class="w-50">
                                 <label for="xlink" class="text-20">External link </label>
@@ -156,71 +163,204 @@
             </article>
 
             <!-- Songs From DB -->
-            <% song.forEach( s => {%>
+            <h2 class="text-center text-success mb-4" id="alert"></h2>
+            <div class="row justify-content-around mb-5">
+                <%if(song[0]){%>
 
-                <div class="song row justify-content-center align-items-center mb-5 mt-5">
-                    <h4 class="col-sm-4">
+                    <h1 class="text-center mt-5 mb-5"> All songs </h1>
+                    <% song.reverse().forEach( s => {%>
 
-                        <bold class="text-primary">
-                            <%=s.name%>
-                        </bold>
-                    </h4>
-                    <div class="track col-sm-10 col-md-7 d-flex flex-xs-column align-items-center justify-content-around">
-                        <audio controls class="px-xs-5"><source src=" <%= s.path %> " type='audio/mp3'></audio>
-                        <div class="d-flex justify-content-between mt-xs-15" style="width: 120px;">
-                            <a class="px-1 px-lg-0" href="<%= s._id %>"><img src="/images/audiomack.png" alt="" srcset="" style="height: 20px; width: 40px;"></a>
-                            <a href="<%=s.path%>" download>
-                                <button type="submit" class="btn bg-pink fa fa-download py-2"></button>
-                            </a>
+
+
+                        <div class="song shadow d-flex py-2 flex-column  col-sm-3 mx-2 justify-content-center align-items-center mb-5 mt-3 " style="border-radius: 20px">
+                            <h4 class="">
+
+                                <bold class="text-primary">
+                                    <%=s.name%>
+                                </bold>
+                            </h4>
+                            <div class="track flex-xs- align-items-center justify-content-around">
+                                <audio controls class="px-xs-5 bg-light"><source  style="background-color: white !; border-radius: 20px;"src=" <%= s.path %> " type='audio/mp3' class="bg-white" preload="auto"></audio>
+                                <div class="d-flex flex-row justify-content-between  mx-auto mt-xs-15" style="width: 200px;">
+                                    <% let use = 'You';%>
+                                        <% console.log(s.admin +' = '+ data.name, name)%>
+                                            <%if (data.name != s.admin){%>
+                                                <%  use = s.admin.split(' ')[0] }%>
+
+                                                    <p class="text-20 mt-1"><i class="fas fa-user d-inline"></i>
+                                                        <%= use%>
+                                                    </p>
+
+                                                    <a class="px-1 px-lg-0 text-18 btn" href="<%= s.xlink %>"><img src="/images/audiomack.png" alt="" srcset="" style="height: 20px; width: 40px;"></a>
+                                                    <a>
+                                                        
+                                                        <a href="<%=s.path%>" download>
+                                                            <button class="btn bg-pink text-18 fa fa-download py-2"></button>
+                                                        </a>
+                                                    </a>
+                                                    <form action="/admin/:email/delete" id="delForm" method="POST">
+                                                        <input type="text" name="file" value="<%=s.path%>" hidden>
+                                                        <button type="submit" class="text-18 py-1 btn btn-danger"><i class="far fa-trash-alt "></i></button>
+                                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                </div>
-                <% })%>
+
+                        <% })%>
+
+                            <%}%>
+                                <%if(video[0]){%>
+                                    <h1 class="text-center mt-5 mb-5"> All videos </h1>
+
+                                    <% video.reverse().forEach( video =>{ %>
+
+                                        <div class="video shadow d-flex py-2 flex-column  col-sm-3 justify-content-center align-items-center mt-3 mb-5 mx-2" style="border-radius: 20px !important; ">
+                                            <video controls style="width: 100%;  height: 100%; border-radius: 20px" class=" bg-dark  px-sm-2 mb-2">
+                                                <source src="<%=video.path %>#t=0.001 " type="video/mp4 ">
+                                                            </video>
+                                            <div class="d-flex flex-row justify-content-between  mx-auto mt-xs-15" style="width: 200px;">
+
+                                                <% let use = 'You';%>
+                                                    <%if (data.name != video.admin){%>
+                                                        <%  use = video.admin.split(' ')[0] }%>
+
+                                                            <p class="text-20 mt-1"><i class="fas fa-user d-inline"></i>
+                                                                <%= use%>
+                                                            </p>
+
+                                                            <a href="<%=video.path%>" download>
+                                                                <button class="btn bg-pink text-18 fa fa-download py-2"></button>
+                                                            </a>
+                                                            <form action="/admin/:email/delete" id="delForm" method="POST">
+                                                                <input type="text" name="file" value="<%=video.path%>" hidden>
+                                                                <button type="submit" class="text-18 py-1 btn btn-danger"><i class="far fa-trash-alt "></i></button>
+                                                            </form>
+                                            </div>
+                                        </div>
+
+                                        <%})%>
+                                            <%}%>
+
+
+
+                                                <%if(img[0]){%>
+                                                    <h1 class="text-center mt-5 mb-5"> All images </h1>
+
+                                                    <% img.reverse().forEach( img =>{ %>
+
+                                                        <div class="image shadow d-flex py-2 flex-column  col-sm-3 mx-2 justify-content-center align-items-center mt-3 mb-5" style="border-radius: 20px">
+
+                                                            <img src="<%=img.path %>" alt="" class="mx-sm-auto-lib center shadow  img-fluid mb-3" srcset="" style="border-radius: 20px">
+
+                                                            <div class="d-flex flex-row justify-content-between  mx-auto mt-xs-15" style="width: 200px;">
+
+                                                                <% let use = 'You';%>
+                                                                    <%if (data.name != img.admin){%>
+                                                                        <%  use = img.admin.split(' ')[0] }%>
+
+                                                                            <p class="text-20 mt-1"><i class="fas fa-user d-inline"></i>
+                                                                                <%= use%>
+                                                                            </p>
+
+                                                                            <a href="<%=img.path%>" download>
+                                                                                <button class="btn bg-pink text-18 fa fa-download py-2"></button>
+                                                                            </a>
+                                                                            <form action="/admin/:email/delete" id="delForm" method="POST">
+                                                                                <input type="text" name="file" value="<%=img.path%>" hidden>
+                                                                                <button type="submit" class="text-18 py-1 btn btn-danger"><i class="far fa-trash-alt "></i></button>
+                                                                            </form>
+                                                            </div>
+                                                        </div>
+
+                                                        <%})%>
+                                                            <%}%>
+
+            </div>
         </section>
     </main>
-    <script>
-        const uri = document.querySelector("form").getAttribute("action");
-        console.log(document.location.href + uri);
 
-        // alert()
-        document.querySelector("form").addEventListener("submit", e => {
-            // e.preventDefault();
-            const url = document.location.href + uri;
-            console.log($(e)[0].target.file.value);
+    <%- include('../template/footer')%>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
+        <script src="/javascripts/jquery.min.js"></script>
+        <script>
+            $(document).ready(() => {
 
-            let info = {
-                file: {
-                    file: $(e)[0].target.file.value
-                },
-                ftype: $(e)[0].target.ftype.value,
-                fname: $(e)[0].target.fname.value,
-                exlink: $(e)[0].target.exLink.value,
-            };
-            console.log(info);
-            try {
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: info,
-                    success: (data) => {
-                        alert("sucess")
-                    },
-                    error: (err) => {
-                        console.log("Error:", err);
-                    },
-                    dataType: "json"
+            })
+
+            function clearCookie() {
+                document.cookie = "info=j; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+            }
+            // alert()
+            document.querySelector("#logout").addEventListener("click", e => {
+                clearCookie();
+                document.location.href = "/admin/"
+            })
+
+            document.querySelectorAll(".edit").forEach(d => {
+                d.addEventListener('click', e => {
+                    document.querySelector("#file").value = e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.src
+                        // console.log(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.src)
+                    console.log(document.querySelector("#file").value);
                 })
-            } catch (err) {
-                console.log(err)
-            };
-        });
-        //
-    </script>
-    <script src="javascripts/bootstrap.min.js"></script>
-    <script src="javascripts/app.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
-    <script src="javascripts/jquery.min.js"></script>
+            });
+            document.querySelectorAll("#delForm").forEach(d => {
+                d.addEventListener('submit', e => {
+                    // alert(1234);
+                    e.preventDefault();
+                    let data = d.file;
+                    console.log(data);
+                    const uri = d.getAttribute('action') + `?file=${data.value}`;
+
+                    $("#alert").removeClass("text-success").addClass("text-warning");
+                    $("#alert").text('Processing request please wait...');
+
+                    $.ajax({
+                        url: uri,
+                        type: 'DELETE',
+                        contentType: 'application/json',
+                        success: function(result) {
+                            $("#alert").removeClass("text-warning").addClass("text-success");
+                            $("#alert").text(result.msg);
+                            setTimeout(() => document.location.reload(), 2000);
+                        },
+                        error: function(e) {
+                            $("#alert").removeClass("text-warning").addClass("text-danger");
+                            $("#alert").text(e.responseJSON.msg);
+                            console.error(e)
+                        }
+                    });
+                })
+            });
+            // delAcct
+            document.querySelector("#delAcct").addEventListener('click', e => {
+                e.preventDefault();
+                const uri = document.querySelector("#delAcct").getAttribute('action');
+                $("#alert").removeClass("text-success").addClass("text-warning");
+                $("#alert").text('Processing request please wait...');
+
+                $.ajax({
+                    url: uri,
+                    type: 'DELETE',
+                    contentType: 'application/json',
+                    success: function(result) {
+                        $("#alert").removeClass("text-warning").addClass("text-success");
+                        $("#alert").text(result.msg);
+                        clearCookie();
+                        setTimeout(() => document.location.href = '/admin', 2000);
+                    },
+                    error: function(e) {
+                        $("#alert").removeClass("text-warning").addClass("text-danger");
+                        $("#alert").text(e.responseJSON.msg);
+                        console.error(e.state())
+                    }
+                });
+            })
+        </script>
+        <script src="/javascripts/bootstrap.min.js"></script>
+        <script src="/javascripts/app.js"></script>
+
+
 
 </body>
 

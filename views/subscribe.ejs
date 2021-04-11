@@ -27,79 +27,22 @@
     <div class="bg-img ">
         <header class="">
             <!-- Navbar start -->
-            <nav class="navbar navbar-expand-md navbar-light fixed-top py-0 shadow">
-                <div class="container ps-lg-5">
-                    <a class="text-35 navbar-brand text-primary" href="/">
-                            Yowa Music
-                        </a>
-                    <button class="navbar-toggler ml-20" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-                    <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item text-20">
-                                <a class="nav-link active" aria-current="page" href="/">Home</a>
-                            </li>
-                            <li class="nav-item text-20">
-                                <a class="nav-link" href="/songs">Songs</a>
-                            </li>
-                            <li class="nav-item text-20">
-                                <a class="nav-link" href="#">Gallery</a>
-                            </li>
-                            <li class="nav-item text-20 ms-md-5 ">
-                                <a class="nav-link" href="/contact"><input type="button" value="Contact Me" class="btn btn-primary shadow"> </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- Navbar End -->
+            <%- include('../template/nav')%>
+                <!-- Navbar End -->
         </header>
 
         <div class="container mt-100">
             <section class="mx-auto pb-5">
-                <<<<<<< HEAD:views/home.ejs <h1 style="font-weight: 100;" class="text-35">Hey
-                    <strong style="font-weight: 600;"><%=title%>,
-                        </strong> thanks for subscribing to our newsletter.</h1>
-                    =======
-                    <h1 class="text-35" style="font-weight: 100;">Hey <b style="font-weight:600"><%- name %></b>, thanks for subscribing to my newsletter</h1>
-                    >>>>>>> dev:views/subscribe.ejs
-                    <a href="/" class="btn btn-secondary shadow">Go Back</a>
+                <h1 class="text-35" style="font-weight: 100;">Hey <b style="font-weight:600"><%- name %></b>, thanks for subscribing to my newsletter</h1>
+                <a href="/" class="btn btn-secondary shadow">Go Back</a>
             </section>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-center">
-        <div class="row container justify-content-center py-4 mx-auto">
-            <div class="col-md-5">
-                <h2 class="h1">About</h2>
-                <p class="text-20">Yowa is a Singer and song writer, single-handedly redefining the Nigerian music scene with her Afro RnB sound. Yowa brings an urban sound that is undeniably unique, embodying a fusion of afrobeats and RnB genres.</p>
-            </div>
-            <div class="col-md-5">
-                <h2 class="h1">Socials</h2>
-                <div class="d-flex justify-content-center">
-                    <a href="https://www.facebook.com/yowamusic" class="nav-link text-40">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/yowa_music/" class="nav-link text-40">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://twitter.com/iamyowa" class="nav-link text-40">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class=" text-center ">
-            <p class="text-18 mb-1"> &copy; 2021, all rights reserved.</p>
-            <p class="mb-0 pb-2"> Built by <a class="text-decoration-none  text-pink" href="mailto:remilekunelijah21997">Remilekun Elijah</a>
-            </p>
-        </div>
-
-    </footer>
-    <script src="javascripts/app.js"></script>
-    <script src="javascripts/bootstrap.min.js"></script>
+    <%- include('../template/footer')%>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/bootstrap.min.js"></script>
 </body>
 
 </html>

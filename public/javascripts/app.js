@@ -1,21 +1,18 @@
 // // (function() {
-// // "use strict";
+"use strict";
+// alert(123)
 
-// function admin(url) {
-//     function getCookie(cname) {
-//         var name = cname + "=";
-//         var ca = document.cookie.split(';');
-//         for (var i = 0; i < ca.length; i++) {
-//             var c = ca[i];
-//             while (c.charAt(0) == ' ') {
-//                 c = c.substring(1);
-//             }
-//             if (c.indexOf(name) == 0) {
-//                 return c.substring(name.length, c.length);
-//             }
-//         }
-//         return false;
-//     }
+function clearCookie() {
+    document.cookie = "info=j; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+}
+
+function navbarToggler() {
+    $("#sidebartoggle").toggleClass('sidebartoggled');
+    document.querySelector("#sidebar").classList.toggle("sidebar");
+    $("#body").toggleClass("body");
+}
+$("#sidebartoggle").click(navbarToggler);
+$("#adminName").click(navbarToggler);
 
 //     const pages = ["login", "register"];
 //     console.log(url);
