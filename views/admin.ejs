@@ -350,7 +350,7 @@
                             },
                             error: (err) => {
                                 $("#noUser").removeClass("text-info").addClass("text-danger");
-                                $("#noUser").text(err.responseJSON.msg)
+                                $("#noUser").text(err)
                                 if (err.responseJSON.msg.includes("Password")) $(e)[0].target.password.value = ''
                                 else console.log("not a password error")
                             },
