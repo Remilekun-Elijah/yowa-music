@@ -350,24 +350,21 @@
                             },
                             error: (err) => {
                                 $("#noUser").removeClass("text-info").addClass("text-danger");
-                                $("#noUser").text(err.responseJSON.msg)
+                                // $("#noUser").text(err.responseJSON.msg)
+                                $("#noUser").text("Something went wrong.");
                                 console.log(err)
-                                if (err.responseJSON.msg.includes("Password")) $(e)[0].target.password.value = ''
-                                else console.log("not a password error")
+                                    // if (err.responseJSON.msg.includes("Password")) $(e)[0].target.password.value = ''
+                                    // else console.log("not a password error")
                             },
                             dataType: "json"
                         })
                     } catch (err) {
                         console.log(err)
                     };
-                    //     if (!res.data) $("#noUser").text("No user with such info, try creating an account first")
-                    //     console.log(res);
-                    // }).catch(err => console.error(err.msg));
+
                 });
 
-            } // console.log(data);
-            // };
-
+            };
 
             admin(document.location.href)
         </script>
