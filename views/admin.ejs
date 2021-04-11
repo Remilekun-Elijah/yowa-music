@@ -215,28 +215,6 @@
                     }
                     return false;
                 }
-
-                console.log(url);
-                // if (url.includes("admin")) {
-
-                // fetch("http://api.yowamusic.com.ng/v1/admins").then(data => data.json()).then(res => {
-                //     let admin = res.data.filter(data => {
-                //         return data.name === "Remilekun Elijah";
-                //     });
-                //     if (admin.length !== 0) {
-                //         pages.register.addClass("d-none");
-                //         pages.login.parent().removeClass("d-none").addClass("d-block");
-                //     };
-                //     console.log(admin, admin.length);
-                // }).catch(err => console.error(err.msg));
-                // console.log(getCookie("email"))
-                // if (getCookie("email") != false) {
-                //     document.location.href = `admin/${getCookie("email")}`;
-                //     // pages.register.parent().addClass("d-none");
-                //     // pages.login.parent().removeClass("d-none").addClass("d-block");
-                // }
-                // } else document.location.href = `/admin`;
-
                 const fmt1 = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/,
                     fmt2 = /[a-zA-Z0-9]/,
                     fmt3 = /[0-9]/
@@ -347,7 +325,8 @@
                 });
 
                 pages.login.submit(e => {
-                    $("#noUser").text("");
+                    $("#noUser").removeClass("text-text-danger").addClass("text-info");
+                    $("#noUser").text("Processing your inputs...");
                     const url = $(e)[0].target["action"];
                     console.log(url);
                     e.preventDefault();
@@ -364,12 +343,13 @@
                             data: info,
                             success: (data) => {
                                 // setCookie("email", info.email, 7);
-                                $("#noUser").removeClass("text-danger").addClass("text-success");
+                                $("#noUser").removeClass("text-danger");
+                                $("#noUser").removeClass("text-info").addClass("text-success");
                                 $("#noUser").text("Login successful");
                                 document.location.href = `/admin/${info.email}`
                             },
                             error: (err) => {
-
+                                $("#noUser").removeClass("text-info").addClass("text-danger");
                                 $("#noUser").text(err.responseJSON.msg)
                                 if (err.responseJSON.msg.includes("Password")) $(e)[0].target.password.value = ''
                                 else console.log("not a password error")
