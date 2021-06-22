@@ -1,6 +1,21 @@
 // // (function() {
+// $("#go-up").;
+
 "use strict";
 // alert(123)
+$(document).ready(() => {
+    let y;
+    $(document).on('scroll', e => {
+        y = window.scrollY;
+        console.log(y)
+
+        if (window.scrollY > 400) {
+
+            $("#go-up").addClass('go-up');
+        } else $("#go-up").removeClass('go-up');
+    })
+
+})
 
 function clearCookie() {
     document.cookie = "info=j; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
@@ -13,27 +28,3 @@ function navbarToggler() {
 }
 $("#sidebartoggle").click(navbarToggler);
 $("#adminName").click(navbarToggler);
-
-//     const pages = ["login", "register"];
-//     console.log(url);
-//     if (url.includes("admin")) {
-
-//         fetch(`http://api.yowamusic.com.ng/v1/admin/${getCookie("email")}`).then(res => res.json()).then(data => {
-//             document.querySelector("#adminName .fa-user").textContent = data.name;
-
-//             console.log(data.data[0].name)
-//         }).catch(err => console.error(err.msg));
-
-//         // console.log($("#register"));
-//         // $.ajax({
-//         //     type: "POST",
-//         //     url: url,
-//         //     data: data,
-//         //     success: success,
-//         //     dataType: dataType
-//         //   });
-//     }
-// }
-
-// admin(document.location.href)
-//     // }())
