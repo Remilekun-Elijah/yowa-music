@@ -18,7 +18,10 @@
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <title>Document</title>
+    <title>
+        Yowa Music |
+        <%=data.name%>
+    </title>
 
     <style>
         form .requiredX {
@@ -54,23 +57,23 @@
                     <li class="nav-item text-20">
                         <a class="nav-link" href="/gallery">Gallery</a>
                     </li>
-                    <li class="nav-item text-20 ms-md-5">
-                        <a class="nav-link active" href="#"> <button type="button" id="adminName" class="btn bg-pink shadow"> <i class="fas fa-user"> <%= name %>
+                    <li class="nav-item nav-link active text-20 ms-md-5">
+
+                        <button type="button" id="adminName" class="btn bg-pink shadow"> <i class="fas fa-user"> <%= name %>
     </i>
-    </button>
-                        </a>
+                </button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <main class="d-flex  ">
-        <section class="bg-white">
+    <main class="d-flex">
+        <section class="bg-white h-100">
 
-            <div class="containe d-flex" id="sidebar">
-                <div class="d-flex mt-5 bg-white justify-content-center position-fixed shadow" style="width: 360px">
-                    <div class="user  mt-5">
-                        <img src="https://res.cloudinary.com/remilekunelijah/image/upload/v1614467615/wordpress/elijah_98807206.png" alt="" class=" mx-auto border-rounded border-0 shadow bg-dark mb-3" srcset="" style="width: 200px;">
+            <div class="d-flex bg-white" id="sidebar">
+                <div class="d-flex h-100 mt-5 bg-white justify-content-center position-fixed shadow" style="width: 360px;">
+                    <div class="user  mt-3" style="overflow-y: scroll;">
+                        <img src="https://res.cloudinary.com/remilekunelijah/image/upload/v1614467615/wordpress/elijah_98807206.png" alt="" class=" mx-auto border-rounded border-0 shadow bg-dark mb-3" srcset="" style="width: 150px;">
 
                         <div class="d-flex align-items-center">
                             <button id="sidebartoggle" class="position-absolute btn  text-30 shadow bg-white border-0 "><i class="fas fa-caret-left"></i></button>
@@ -277,6 +280,8 @@
                                                             <%}%>
 
             </div>
+
+
         </section>
     </main>
 
@@ -284,10 +289,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
         <script src="/javascripts/jquery.min.js"></script>
         <script>
-            $(document).ready(() => {
-
-            })
-
             function clearCookie() {
                 document.cookie = "info=j; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
             }

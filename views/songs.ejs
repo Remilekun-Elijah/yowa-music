@@ -17,7 +17,7 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
     <title>
         <%- title %>
     </title>
@@ -121,6 +121,21 @@
 
             <div class="song row justify-content-center align-items-center my-5 ">
                 <h4 class="col-sm-4 ">
+                    <bold class="text-primary ">Yowa - Early momo (cover)</bold>
+                </h4>
+                <div class="track col-sm-10 col-md-7 d-flex flex-xs-column align-items-center justify-content-around ">
+                    <audio controls class="px-xs-5 "><source src="musics/Yowa - early momo (cover).mp3" type="audio/mp3 "></audio>
+                    <div class="d-flex justify-content-between mt-xs-15 " style="width: 120px; ">
+                        <a class="px-1 px-lg-0" href="# "><img src="images/audiomack.png" alt=" " srcset=" " style="height: 20px; width: 40px; "></a>
+                        <a href="musics/Yowa - early momo (cover).mp3" download>
+                            <button type="submit " class="btn bg-pink fa fa-download py-2 "></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="song row justify-content-center align-items-center my-5 ">
+                <h4 class="col-sm-4 ">
                     <bold class="text-primary ">Yowa - Forever (Cover)</bold>
                 </h4>
                 <div class="track col-sm-10 col-md-7 d-flex flex-xs-column align-items-center justify-content-around ">
@@ -220,8 +235,9 @@
 
     <!-- Footer -->
     <%- include('../template/footer')%>
-        <script src="javascripts/app.js"></script>
-        <script src="javascripts/bootstrap.min.js"></script>
+        <script src="/javascripts/jquery.min.js"></script>
+        <script src="/javascripts/app.js"></script>
+        <script src="/javascripts/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -4,9 +4,11 @@ const express = require('express'),
     app = express(),
     mongoose = require("mongoose"),
     multer = require('multer'),
-    bcrypt = require("bcrypt");
-require("dotenv/config");
+    bcrypt = require("bcrypt")
+saltRounds = 10;
+if (app.get("env") === 'NODE_ENV') require("dotenv/config");
 
+// console.log(app.get("env"));
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -46,31 +48,23 @@ router.get("/", isLoggedIn, (req, res) => {
         })
         res.render("admin");
     })
-    .post('/', async(req, res) => {
+    .post('/login', async(req, res) => {
         try {
             let v = await admin.findOne({ email: req.body.email });
-
-            // function(err, doc) {
             if (!v) {
                 res.status(404).json({ msg: "User not found!", success: false });
-                // console.log(err);
                 return;
             }
-            // })
 
 
             bcrypt.compare(req.body.password, v.password, (err, same) => {
                 if (err) {
                     console.log(err)
                     res.status(400).json({ msg: "Password incorrect.", success: false });
+                    return;
                 } else if (same === true) {
-                    let n = new Date();
-                    n.setDate = n.getDate() + 7;
-
                     res.cookie('info', { name: `${v.name}`, email: `${v.email}` }, { maxAge: 604800000, path: "/", encode: String });
-
                     res.json({ data: v.name, success: true });
-
                 } else res.status(400).json({ msg: "Password is not correct.", success: false });
             })
         } catch (error) {
@@ -79,40 +73,75 @@ router.get("/", isLoggedIn, (req, res) => {
         }
 
     })
+    .post('/register', async(req, res) => {
+
+        try {
+            const hash = await bcrypt.hash(req.body.password, saltRounds);
+            const newAdmin = new admin({
+                name: req.body.name,
+                email: req.body.email,
+                password: hash
+            });
+            const saved = await newAdmin.save();
+
+            res.status(201).json({
+                "success": true
+            });
+            console.log(saved);
+        } catch (err) {
+            res.status(500).json({
+                msg: "There was an error storing your data",
+                success: false
+            });
+            console.error(err)
+        }
+    });
+
+
 
 async function getFile(name) {
 
     return name.find();
 }
 router.get("/:email", async(req, res) => {
-    let audio = await getFile(song);
-    let vid = await getFile(video);
-    let img = await getFile(image);
-    // console.log(vid);
-    if (req.cookies.info) {
-        if (req.cookies.info.email === req.params.email) {
-            try {
-                admin.findOne({ email: req.params.email }, (err, doc) => {
-                    if (doc) {
-                        let c = doc.name.split(' ');
-                        if (c.length >= 2 && c.length <= 3) c = c[0];
-                        else c = doc.name;
-                        console.log(c);
-                        res.render("dashboard", { data: doc, name: c, song: audio, video: vid, img: img });
-                        // res.status(200).json({ data: doc, success: true });
-                        // console.log(new session.Cookie());
-                    } else {
-                        res.clearCookie("info");
-                        res.redirect("/admin");
-                    }
-                })
-            } catch (err) {
-                console.log(err)
-            }
-        } else res.render("error")
+    try {
+        let audio = await getFile(song);
+        let vid = await getFile(video);
+        let img = await getFile(image);
 
-    } else {
-        res.redirect("/admin")
+        if (req.cookies.info) {
+            if (req.cookies.info.email === req.params.email) {
+
+                let doc = await admin.findOne({ email: req.params.email });
+                //  (err, doc) => {
+                if (doc) {
+                    let c = doc.name.split(' ');
+                    if (c.length >= 2 && c.length <= 3) c = c[0];
+                    else c = doc.name;
+                    console.log(c);
+                    res.render("dashboard", { data: doc, name: c, song: audio, video: vid, img: img });
+                    // res.status(200).json({ data: doc, success: true });
+                    // console.log(new session.Cookie());
+                } else {
+                    res.clearCookie("info");
+                    res.redirect("/admin");
+                    throw new Error("User not found in the db");
+                }
+                // })
+
+            } else {
+                res.status(404);
+                res.render("adminError");
+                console.error('Error: Cant Find', req.path + '!');
+
+            }
+        } else {
+            res.redirect("/admin")
+        }
+    } catch (err) {
+        res.status(500);
+        // res.render("adminError")
+        console.error('Error:', err.message, err.stack + '!')
     }
 });
 

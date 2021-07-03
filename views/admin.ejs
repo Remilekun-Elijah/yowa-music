@@ -18,7 +18,7 @@
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <title>Admin</title>
+    <title>Admin Login | Register</title>
 
     <style>
         form .requiredX {
@@ -93,7 +93,7 @@
 
 
     <section id="login" class="d-none d-flex justify-content-center align-items-center container px-5">
-        <form action="/admin/" method="POST" name="login">
+        <form action="/admin/login" method="POST" name="login">
             <h1 class="text-center mb-3 mt-4">Login your account</h1>
             <fieldset>
                 <h2 class="text-danger text-center" id="noUser"></h2>
@@ -118,8 +118,9 @@
 
 
     <section id="register" class="d-flex justify-content-center align-items-center container px-5">
-        <form action="http://api.yowamusic.com.ng/v1/admin" method="POST" name="register">
+        <form action="/admin/register" method="POST" name="register">
             <h1 class="text-center mb-3 mt-4">Create an account</h1>
+            <h3 class="text-warning text-center" id="signupErr"></h3>
             <fieldset>
                 <div class="form-group">
                     <label for="name" class="text-20">Full Name<span class="requiredX text-danger"> *</span></label>
@@ -163,11 +164,12 @@
     </section>
 
     <%- include('../template/footer')%>
-        <script src="javascripts/bootstrap.min.js"></script>
-        <script src="javascripts/app.js"></script>
+        <script src="/javascripts/jquery.min.js"></script>
+        <script src="/javascripts/bootstrap.min.js"></script>
+        <script src="/javascripts/app.js"></script>
+
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script> -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="javascripts/jquery.min.js"></script>
 
         <script>
             function admin(url) {
@@ -215,28 +217,6 @@
                     }
                     return false;
                 }
-
-                console.log(url);
-                // if (url.includes("admin")) {
-
-                // fetch("http://api.yowamusic.com.ng/v1/admins").then(data => data.json()).then(res => {
-                //     let admin = res.data.filter(data => {
-                //         return data.name === "Remilekun Elijah";
-                //     });
-                //     if (admin.length !== 0) {
-                //         pages.register.addClass("d-none");
-                //         pages.login.parent().removeClass("d-none").addClass("d-block");
-                //     };
-                //     console.log(admin, admin.length);
-                // }).catch(err => console.error(err.msg));
-                // console.log(getCookie("email"))
-                // if (getCookie("email") != false) {
-                //     document.location.href = `admin/${getCookie("email")}`;
-                //     // pages.register.parent().addClass("d-none");
-                //     // pages.login.parent().removeClass("d-none").addClass("d-block");
-                // }
-                // } else document.location.href = `/admin`;
-
                 const fmt1 = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/,
                     fmt2 = /[a-zA-Z0-9]/,
                     fmt3 = /[0-9]/
@@ -322,6 +302,7 @@
 
                 pages.register.submit(e => {
                     $("#noUser").text("");
+                    $("#signupErr").text("Proccessing info...");
                     const url = $(e)[0].target["action"];
                     console.log(url);
                     e.preventDefault();
@@ -337,8 +318,18 @@
                         success: (data) => {
                             if (!data) console.error(data.msg);
                             console.log(data);
-                            pages.register.parent().addClass('d-none');
-                            pages.login.parent().removeClass("d-none").addClass('d-block');
+                            $("#signupErr").removeClass("text-danger");
+                            $("#signupErr").removeClass("text-warning").addClass("text-success");
+                            $("#signupErr").text("Account created successfully");
+
+                            setTimeout(() => {
+                                pages.register.parent().addClass('d-none');
+                                pages.login.parent().removeClass("d-none").addClass('d-block');
+                            }, 2000)
+                        },
+                        error: (msg) => {
+                            $("#signupErr").text(msg.responseJSON.msg);
+                            $("#signupErr").removeClass("text-warning").addClass("text-danger");
                         },
                         dataType: "json"
                     });
@@ -347,7 +338,8 @@
                 });
 
                 pages.login.submit(e => {
-                    $("#noUser").text("");
+                    $("#noUser").removeClass("text-danger").addClass("text-info");
+                    $("#noUser").text("Processing your inputs...");
                     const url = $(e)[0].target["action"];
                     console.log(url);
                     e.preventDefault();
@@ -363,30 +355,24 @@
                             url: url,
                             data: info,
                             success: (data) => {
-                                // setCookie("email", info.email, 7);
-                                $("#noUser").removeClass("text-danger").addClass("text-success");
+                                $("#noUser").removeClass("text-danger");
+                                $("#noUser").removeClass("text-info").addClass("text-success");
                                 $("#noUser").text("Login successful");
                                 document.location.href = `/admin/${info.email}`
                             },
                             error: (err) => {
-
+                                $("#noUser").removeClass("text-info").addClass("text-danger");
                                 $("#noUser").text(err.responseJSON.msg)
-                                if (err.responseJSON.msg.includes("Password")) $(e)[0].target.password.value = ''
-                                else console.log("not a password error")
                             },
                             dataType: "json"
                         })
                     } catch (err) {
                         console.log(err)
                     };
-                    //     if (!res.data) $("#noUser").text("No user with such info, try creating an account first")
-                    //     console.log(res);
-                    // }).catch(err => console.error(err.msg));
+
                 });
 
-            } // console.log(data);
-            // };
-
+            };
 
             admin(document.location.href)
         </script>

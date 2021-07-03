@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Error</title>
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/lib.css" />
+
+</head>
+
+<body>
+    <!-- Navbar start-->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top py-0 shadow">
+        <div class=" container ps-lg-5">
+            <a class="text-35 navbar-brand text-primary " href="/ ">
+                      Yowa Music
+                  </a>
+            <button class="navbar-toggler ml-20" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+            <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ">
+                    <li class="nav-item text-20">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item text-20">
+                        <a class="nav-link" aria-current="page" href="/songs">Songs</a>
+                    </li>
+                    <li class="nav-item text-20">
+                        <a class="nav-link" href="/gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item nav-link active text-20 ms-md-5">
+
+                        <button type="button" id="adminName" class="btn bg-pink shadow"> <i class="fas fa-user"> <%= name %>
+ </i>
+                 </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1 style="margin-top:7rem; text-align: center;"> <strong>4<span style="color: red">0</span>4</strong> Page not found</h1>
+
+    <p class="text-center mt-5 text-30">Go back to <a href="/admin" class="btn btn-danger ms-sm-2">admin page</a></p>
+
+    <%- include("../template/footer") %>
+        <script src="/javascripts/jquery.min.js"></script>
+        <script src="/javascripts/bootstrap.min.js"></script>
+        <script src="/javascripts/app.js"></script>
+</body>
+
+</html>

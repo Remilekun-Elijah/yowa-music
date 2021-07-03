@@ -2,13 +2,22 @@
 
 /* PRELOADER */
 
+#go-up {
+    bottom: -50px;
+    transition: bottom .3s;
+}
+
+.go-up {
+    bottom: 30px !important;
+}
+
 #body {
     width: 100%;
     transition: all .5s;
 }
 
 .body {
-    width: 70% !important;
+    /* width: 70% !important; */
 }
 
 #sidebar {
@@ -17,10 +26,11 @@
     left: -23rem;
     /* transform: translateX(-30vw); */
     transition: all .4s;
+    /* overflow-y: scroll !important; */
 }
 
 .sidebar {
-    left: 0 !important;
+    left: -10px !important;
     /* transform: translateX(0vw) !important; */
 }
 
