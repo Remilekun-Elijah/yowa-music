@@ -6,7 +6,8 @@ const express = require('express'),
     multer = require('multer'),
     bcrypt = require("bcrypt")
 saltRounds = 10;
-if (app.get("env") === 'NODE_ENV') require("dotenv/config");
+console.log(app.get("env"));
+if (app.get("env") === 'development') require("dotenv/config");
 
 // console.log(app.get("env"));
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
